@@ -13,10 +13,15 @@ struct ContentView: View {
 
     var body: some View {
         NavigationStack {
-            List {
-                ForEach(viewModel.habits, id: \.id) { habit in
-                    Text(habit.title)
+            ScrollView {
+                VStack(alignment: .leading, spacing: 5) {
+                    ForEach(viewModel.habits, id: \.id) { habit in
+                        HabitCardView(habit: habit)
+                    }
                 }
+            }
+            .navigationDestination(for: Habit.self) { habit in
+                HabitDetailView(title: habit.title, subtitle: habit.subtitle)
             }
             .navigationTitle("Habits")
             .toolbar {
