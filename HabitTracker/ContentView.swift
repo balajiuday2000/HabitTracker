@@ -8,14 +8,32 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject var viewModel = HabitsViewModel(habits: [])
+    @State var showingAddHabit = false
+
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        NavigationStack {
+            List {
+                ForEach(viewModel.habits, id: \.id) { habit in
+                    Text(habit.title)
+                }
+            }
+            .navigationTitle("Habits")
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button {
+                        showingAddHabit = true
+                    } label: {
+                        Image(systemName: "plus")
+                    }
+                }
+            }
+            .sheet(isPresented: $showingAddHabit) {
+                AddHabitView { habit in
+                    viewModel.addHabit(habit)
+                }
+            }
         }
-        .padding()
     }
 }
 
