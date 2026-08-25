@@ -26,7 +26,7 @@ struct AddHabitView: View {
                     TextField("Enter title here", text: $title)
                 }
                 Section("Set subtitle") {
-                    TextField("Enter title here", text: $subtitle)
+                    TextField("Enter subtitle here", text: $subtitle)
                 }
             }
             .navigationTitle("Add a habit")
