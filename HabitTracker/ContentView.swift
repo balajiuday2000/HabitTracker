@@ -22,9 +22,6 @@ struct ContentView: View {
                     }
                 }
             }
-            .navigationDestination(for: Habit.self) { habit in
-                HabitDetailView(title: habit.title, subtitle: habit.subtitle)
-            }
             .navigationTitle("Habits")
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
