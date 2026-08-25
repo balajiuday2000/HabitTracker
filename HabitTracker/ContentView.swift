@@ -16,7 +16,9 @@ struct ContentView: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: 5) {
                     ForEach(viewModel.habits, id: \.id) { habit in
-                        HabitCardView(habit: habit)
+                        HabitCardView(habit: habit) {
+                            viewModel.onToggle(habit: habit)
+                        }
                     }
                 }
             }

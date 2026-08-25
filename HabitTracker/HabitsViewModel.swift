@@ -36,4 +36,11 @@ class HabitsViewModel {
             UserDefaults.standard.set(encode, forKey: Constants.key)
         }
     }
+
+    func onToggle(habit: Habit) {
+        if let index = habits.firstIndex(where: { $0.id == habit.id }) {
+            habits[index].isCompleted.toggle()
+            saveHabits()
+        }
+    }
 }
