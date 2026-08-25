@@ -32,9 +32,9 @@ struct HabitCardView: View {
                     Image(systemName: habit.isCompleted ? "checkmark.circle.fill" : "circle")
                         .font(.system(size: 26))
                         .foregroundStyle(.black)
-                        .scaleEffect(habit.isCompleted ? 1.20 : 1.0)
+                        .scaleEffect(habit.isCompleted ? 1.50 : 1.0)
                         .contentTransition(.symbolEffect(.replace))
-                        .symbolEffect(.bounce, value: habit.isCompleted)
+                        .animation(.spring(response: 1.0, dampingFraction: 0.1), value: habit.isCompleted)
                 }
                 Button {
                     withAnimation(.easeOut(duration: 0.2)) {
