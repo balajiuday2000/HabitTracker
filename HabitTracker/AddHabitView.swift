@@ -15,7 +15,7 @@ struct AddHabitView: View {
     @Environment(\.dismiss) private var dismiss
     var onSave: (Habit) -> Void
     private var isSaveDisabled: Bool {
-        title.trimmingCharacters(in: .whitespaces).isEmpty &&
+        title.trimmingCharacters(in: .whitespaces).isEmpty ||
         subtitle.trimmingCharacters(in: .whitespaces).isEmpty
     }
     
