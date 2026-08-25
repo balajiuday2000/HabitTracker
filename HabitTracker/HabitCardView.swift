@@ -11,6 +11,8 @@ import SwiftUI
 struct HabitCardView: View {
     var habit: Habit
     var onToggle: () -> Void
+    
+    @State private var hasAppeared = false
 
     var body: some View {
         NavigationLink(value: habit) {
@@ -32,13 +34,18 @@ struct HabitCardView: View {
                             .foregroundStyle(.black)
                             .scaleEffect(habit.isCompleted ? 1.15 : 1.0)
                     }
-                    .buttonStyle(.plain)
                 }
                 .padding(.all)
             }
             .padding(.horizontal)
         }
         .buttonStyle(.plain)
+        .scaleEffect(hasAppeared ? 1.0 : 1.3)
+        .onAppear {
+            withAnimation(.spring(response: 1.0, dampingFraction: 0.5)) {
+                hasAppeared = true
+            }
+        }
     }
 }
 
