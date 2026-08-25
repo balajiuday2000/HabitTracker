@@ -2,7 +2,7 @@
 //  HabitTrackerUITestsLaunchTests.swift
 //  HabitTrackerUITests
 //
-//  Created by Software Merchant on 8/25/26.
+//  Created by Balaji Udayakumar on 8/25/26.
 //
 
 import XCTest
