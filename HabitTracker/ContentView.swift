@@ -27,11 +27,16 @@ struct ContentView: View {
             }
             .navigationTitle("Habits")
             .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
+                ToolbarItem(placement: .confirmationAction) {
                     Button {
                         showingAddHabit = true
                     } label: {
                         Image(systemName: "plus")
+                    }
+                }
+                ToolbarItem(placement: .cancellationAction) {
+                    Button("Reset all") {
+                        viewModel.resetAll()
                     }
                 }
             }

@@ -43,4 +43,11 @@ class HabitsViewModel {
             saveHabits()
         }
     }
+    
+    func resetAll() {
+        for index in habits.indices {
+            habits[index].isCompleted = false
+        }
+        saveHabits()
+    }
 }
