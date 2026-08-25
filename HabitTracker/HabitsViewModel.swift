@@ -8,14 +8,32 @@
 import Foundation
 import Combine
 
-class HabitsViewModel: ObservableObject {
-    @Published var habits: [Habit]
+@Observable
+class HabitsViewModel {
+    enum Constants {
+        static let key = "savedHabits"
+    }
+    var habits: [Habit] = []
 
-    init(habits: [Habit]) {
-        self.habits = habits
+    init() {
+        loadHabits()
     }
 
     func addHabit(_ habit: Habit) {
         habits.append(habit)
+        saveHabits()
+    }
+
+    func loadHabits() {
+        if let data = UserDefaults.standard.data(forKey: Constants.key),
+           let decodedData = try? JSONDecoder().decode([Habit].self, from: data) {
+            habits = decodedData
+        }
+    }
+
+    func saveHabits() {
+        if let encode = try? JSONEncoder().encode(habits) {
+            UserDefaults.standard.set(encode, forKey: Constants.key)
+        }
     }
 }
