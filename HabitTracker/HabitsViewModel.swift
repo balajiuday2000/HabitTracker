@@ -31,7 +31,7 @@ class HabitsViewModel {
         }
     }
 
-    func saveHabits() {
+    private func saveHabits() {
         if let encode = try? JSONEncoder().encode(habits) {
             UserDefaults.standard.set(encode, forKey: Constants.key)
         }
@@ -42,6 +42,11 @@ class HabitsViewModel {
             habits[index].isCompleted.toggle()
             saveHabits()
         }
+    }
+
+    func delete(habit: Habit) {
+        habits.removeAll(where: { $0 == habit })
+        saveHabits()
     }
     
     func resetAll() {

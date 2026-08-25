@@ -11,6 +11,7 @@ import SwiftUI
 struct HabitCardView: View {
     var habit: Habit
     var onToggle: () -> Void
+    var onDelete: () -> Void
     
     @State private var hasAppeared = false
 
@@ -32,6 +33,15 @@ struct HabitCardView: View {
                         .font(.system(size: 26))
                         .foregroundStyle(.black)
                         .scaleEffect(habit.isCompleted ? 1.15 : 1.0)
+                }
+                Button {
+                    withAnimation(.easeOut(duration: 0.2)) {
+                        onDelete()
+                    }
+                } label: {
+                    Image(systemName: "trash.fill")
+                        .font(.system(size: 26))
+                        .foregroundStyle(.black)
                 }
             }
             .padding(.all)

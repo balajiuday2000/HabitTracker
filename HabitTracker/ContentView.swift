@@ -18,6 +18,8 @@ struct ContentView: View {
                     ForEach(viewModel.habits, id: \.id) { habit in
                         HabitCardView(habit: habit) {
                             viewModel.onToggle(habit: habit)
+                        } onDelete: {
+                            viewModel.delete(habit: habit)
                         }
                     }
                 }
