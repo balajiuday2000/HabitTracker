@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-struct ContentView: View {
-    @State var viewModel = HabitsViewModel()
+struct HabitsListView: View {
+    var viewModel: HabitsViewModel
     @State var showingAddHabit = false
 
     var body: some View {
@@ -49,8 +49,4 @@ struct ContentView: View {
             }
         }
     }
-}
-
-#Preview {
-    ContentView()
 }

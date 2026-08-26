@@ -36,6 +36,7 @@ struct HabitCardView: View {
                         .contentTransition(.symbolEffect(.replace))
                         .animation(.spring(response: 1.0, dampingFraction: 0.1), value: habit.isCompleted)
                 }
+                .buttonStyle(.plain)
                 Button {
                     withAnimation(.easeOut(duration: 0.2)) {
                         onDelete()
@@ -45,6 +46,7 @@ struct HabitCardView: View {
                         .font(.system(size: 26))
                         .foregroundStyle(.black)
                 }
+                .buttonStyle(.plain)
             }
             .padding(.all)
         }
