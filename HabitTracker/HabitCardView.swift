@@ -37,16 +37,6 @@ struct HabitCardView: View {
                         .animation(.spring(response: 1.0, dampingFraction: 0.1), value: habit.isCompleted)
                 }
                 .buttonStyle(.plain)
-                Button {
-                    withAnimation(.easeOut(duration: 0.2)) {
-                        onDelete()
-                    }
-                } label: {
-                    Image(systemName: "trash.fill")
-                        .font(.system(size: 26))
-                        .foregroundStyle(.black)
-                }
-                .buttonStyle(.plain)
             }
             .padding(.all)
         }

@@ -22,7 +22,16 @@ struct HabitsListView: View {
                     }
                     .listRowBackground(Color.clear)
                     .listRowSeparator(.hidden)
-                    .listRowInsets(EdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5))
+                    .listRowInsets(EdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10))
+                    .swipeActions(edge: .trailing, allowsFullSwipe: false) {
+                        Button(role: .destructive) {
+                            withAnimation(.easeOut(duration: 0.2)) {
+                                viewModel.delete(habit: habit)
+                            }
+                        } label: {
+                            Image(systemName: "trash")
+                        }
+                    }
                 }
                 .onMove(perform: viewModel.onOrderChanged)
             }

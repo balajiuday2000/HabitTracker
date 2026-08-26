@@ -65,6 +65,3 @@ struct AddHabitView: View {
         }
     }
 }
-
-
-
