@@ -41,7 +41,6 @@ struct StatsView: View {
                 Text("\(completedTasks) of \(viewModel.habits.count) habits completed today")
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
-                
             }
             .navigationTitle("Stats")
         }

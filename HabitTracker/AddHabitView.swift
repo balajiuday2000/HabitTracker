@@ -8,10 +8,13 @@
 import Foundation
 import Combine
 import SwiftUI
+import UserNotifications
 
 struct AddHabitView: View {
     @State private var title: String = ""
     @State private var subtitle: String = ""
+    @State private var reminderTime: Date = Date()
+    @State private var isReminderEnabled: Bool = false
     @Environment(\.dismiss) private var dismiss
     var onSave: (Habit) -> Void
     private var isSaveDisabled: Bool {
@@ -28,6 +31,10 @@ struct AddHabitView: View {
                 Section("Set subtitle") {
                     TextField("Enter subtitle here", text: $subtitle)
                 }
+                Toggle("Set a daily reminder?", isOn: $isReminderEnabled)
+                if isReminderEnabled {
+                    DatePicker("Select time:", selection: $reminderTime, displayedComponents: .hourAndMinute)
+                }
             }
             .navigationTitle("Add a habit")
             .toolbar {
@@ -38,7 +45,18 @@ struct AddHabitView: View {
                 }
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Save") {
-                        onSave(Habit(title: title, subtitle: subtitle))
+                        // Request permission for notifications
+                        if isReminderEnabled {
+                            UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) {
+                                _, _ in
+                            }
+                        }
+                        // Save habit
+                        onSave(Habit(
+                            title: title,
+                            subtitle: subtitle,
+                            reminderTime: isReminderEnabled ? reminderTime : nil
+                        ))
                         dismiss()
                     }
                     .disabled(isSaveDisabled)
