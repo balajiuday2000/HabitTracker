@@ -48,7 +48,6 @@ struct HabitCardView: View {
             }
             .padding(.all)
         }
-        .padding(.horizontal)
         .scaleEffect(hasAppeared ? 1.0 : 1.3)
         .onAppear {
             withAnimation(.spring(response: 1.0, dampingFraction: 0.5)) {

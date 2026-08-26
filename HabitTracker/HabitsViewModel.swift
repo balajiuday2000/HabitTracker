@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import SwiftUI
 
 @Observable
 class HabitsViewModel {
@@ -53,6 +54,11 @@ class HabitsViewModel {
         for index in habits.indices {
             habits[index].isCompleted = false
         }
+        saveHabits()
+    }
+    
+    func onOrderChanged(from source: IndexSet, to destination: Int) {
+        habits.move(fromOffsets: source, toOffset: destination)
         saveHabits()
     }
 }

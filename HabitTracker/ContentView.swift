@@ -13,17 +13,20 @@ struct ContentView: View {
 
     var body: some View {
         NavigationStack {
-            ScrollView {
-                VStack(alignment: .leading, spacing: 5) {
-                    ForEach(viewModel.habits, id: \.id) { habit in
-                        HabitCardView(habit: habit) {
-                            viewModel.onToggle(habit: habit)
-                        } onDelete: {
-                            viewModel.delete(habit: habit)
-                        }
+            List {
+                ForEach(viewModel.habits, id: \.id) { habit in
+                    HabitCardView(habit: habit) {
+                        viewModel.onToggle(habit: habit)
+                    } onDelete: {
+                        viewModel.delete(habit: habit)
                     }
+                    .listRowBackground(Color.clear)
+                    .listRowSeparator(.hidden)
+                    .listRowInsets(EdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5))
                 }
+                .onMove(perform: viewModel.onOrderChanged)
             }
+            .listStyle(.plain)
             .navigationTitle("Habits")
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
