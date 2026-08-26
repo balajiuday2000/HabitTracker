@@ -57,8 +57,8 @@ class HabitsViewModel {
         saveHabits()
     }
     
-    func onOrderChanged(from source: IndexSet, to destination: Int) {
-        habits.move(fromOffsets: source, toOffset: destination)
+    func onOrderChanged(from: IndexSet, to: Int) {
+        habits.move(fromOffsets: from, toOffset: to)
         saveHabits()
     }
 }
