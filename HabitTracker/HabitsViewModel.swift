@@ -16,8 +16,11 @@ class HabitsViewModel {
         static let key = "savedHabits"
     }
     var habits: [Habit] = []
+    let userDefaults: UserDefaults
 
-    init() {
+    // Dependency injection
+    init(userDefaults: UserDefaults = .standard) {
+        self.userDefaults = userDefaults
         loadHabits()
     }
 
@@ -29,7 +32,7 @@ class HabitsViewModel {
     }
 
     func loadHabits() {
-        if let data = UserDefaults.standard.data(forKey: Constants.key),
+        if let data = self.userDefaults.data(forKey: Constants.key),
            let decodedData = try? JSONDecoder().decode([Habit].self, from: data) {
             habits = decodedData
         }
@@ -37,7 +40,7 @@ class HabitsViewModel {
 
     private func saveHabits() {
         if let encode = try? JSONEncoder().encode(habits) {
-            UserDefaults.standard.set(encode, forKey: Constants.key)
+            self.userDefaults.set(encode, forKey: Constants.key)
         }
     }
 
