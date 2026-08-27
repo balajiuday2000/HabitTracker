@@ -22,26 +22,35 @@ struct StatsView: View {
     
     var body: some View {
         NavigationStack {
-            VStack {
-                Chart {
-                    BarMark(
-                        x: .value("Status", "Completed"),
-                        y: .value("Count", completedTasks)
-                    )
-                    .foregroundStyle(.green)
+            TabView {
+                // First View
+                VStack {
+                    Chart {
+                        BarMark(
+                            x: .value("Status", "Completed"),
+                            y: .value("Count", completedTasks)
+                        )
+                        .foregroundStyle(.green)
+                        
+                        BarMark(
+                            x: .value("Status", "Pending"),
+                            y: .value("Count", pendingTasks)
+                        )
+                    }
+                    .frame(height: 250)
+                    .padding()
                     
-                    BarMark(
-                        x: .value("Status", "Pending"),
-                        y: .value("Count", pendingTasks)
-                    )
+                    Text("\(completedTasks) of \(viewModel.habits.count) habits completed today")
+                        .font(.subheadline)
+                        .foregroundStyle(.secondary)
                 }
-                .frame(height: 250)
-                .padding()
+
+                // Second View
+                ProgressRingView(progress: viewModel.habits.isEmpty ? 0 : Double(completedTasks) / Double(viewModel.habits.count))
                 
-                Text("\(completedTasks) of \(viewModel.habits.count) habits completed today")
-                    .font(.subheadline)
-                    .foregroundStyle(.secondary)
             }
+            .tabViewStyle(.page)
+            .indexViewStyle(.page(backgroundDisplayMode: .always))
             .navigationTitle("Stats")
         }
     }
