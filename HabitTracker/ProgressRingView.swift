@@ -25,7 +25,7 @@ struct ProgressRingView: View {
                 )
                 .animation(.easeInOut(duration: 0.6), value: progress)
 
-            VStack(spacing: 4) {
+            VStack(alignment: .center, spacing: 4) {
                 Text("\(Int(progress * 100))%")
                     .font(.system(size: 36, weight: .bold))
                 Text("Completed")
@@ -33,7 +33,7 @@ struct ProgressRingView: View {
                     .foregroundStyle(.secondary)
             }
         }
-        .frame(width: 280, height: 280)
+        .frame(width: 250, height: 250)
     }
 }
 

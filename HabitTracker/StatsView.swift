@@ -24,7 +24,15 @@ struct StatsView: View {
         NavigationStack {
             TabView {
                 // First View
+                VStack(alignment: .center) {
+                    Text("Today").font(.headline)
+                    ProgressRingView(progress: viewModel.habits.isEmpty ? 0 : Double(completedTasks) / Double(viewModel.habits.count))
+                        .padding(.vertical)
+                }
+
+                // Second View
                 VStack {
+                    Text("This week").font(.headline)
                     Chart {
                         BarMark(
                             x: .value("Status", "Completed"),
@@ -39,14 +47,8 @@ struct StatsView: View {
                     }
                     .frame(height: 250)
                     .padding()
-                    
-                    Text("\(completedTasks) of \(viewModel.habits.count) habits completed today")
-                        .font(.subheadline)
-                        .foregroundStyle(.secondary)
                 }
-
-                // Second View
-                ProgressRingView(progress: viewModel.habits.isEmpty ? 0 : Double(completedTasks) / Double(viewModel.habits.count))
+                
                 
             }
             .tabViewStyle(.page)
