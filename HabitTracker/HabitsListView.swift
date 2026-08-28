@@ -79,6 +79,7 @@ struct HabitsListView: View {
                     Button("Reset all") {
                         viewModel.resetAll()
                     }
+                    .disabled(viewModel.habits.isEmpty)
                 }
             }
             .sheet(isPresented: $showingAddHabit) {
