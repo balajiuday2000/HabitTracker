@@ -14,6 +14,7 @@ import UserNotifications
 class HabitsViewModel {
     enum Constants {
         static let key = "savedHabits"
+        static let lastResetDateKey = "lastResetDay"
     }
     var habits: [Habit] = []
     let userDefaults: UserDefaults
@@ -22,6 +23,7 @@ class HabitsViewModel {
     init(userDefaults: UserDefaults = .standard) {
         self.userDefaults = userDefaults
         loadHabits()
+        resetAllHabitsOnNewDay()
     }
 
     func addHabit(_ habit: Habit) {
@@ -45,10 +47,19 @@ class HabitsViewModel {
     }
 
     func onToggle(habit: Habit) {
-        if let index = habits.firstIndex(where: { $0.id == habit.id }) {
-            habits[index].isCompleted.toggle()
-            saveHabits()
+        guard let index = habits.firstIndex(where: { $0.id == habit.id }) else { return }
+        habits[index].isCompleted.toggle()
+        let today = Calendar.current.startOfDay(for: Date())
+        // If completed, record streak if not already done.
+        if habits[index].isCompleted {
+            if !habits[index].streak.contains(today) {
+                habits[index].streak.append(today)
+            }
+        } else {
+            // Else if unchecked, remove streak.
+            habits[index].streak.removeAll(where: { $0 == today} )
         }
+        saveHabits()
     }
 
     func delete(habit: Habit) {
@@ -68,7 +79,20 @@ class HabitsViewModel {
         habits.move(fromOffsets: from, toOffset: to)
         saveHabits()
     }
+
+    func resetAllHabitsOnNewDay() {
+        let today = Calendar.current.startOfDay(for: Date())
+        let lastResetDate = self.userDefaults.object(forKey: Constants.lastResetDateKey) as? Date
+        
+        // Only proceed if last reset day is nil (first launch)
+        // Or if last reset day is not the same as today.
+        guard lastResetDate == nil || !Calendar.current.isDate(today, inSameDayAs: lastResetDate!) else { return }
+
+        resetAll()
+        self.userDefaults.set(today, forKey: Constants.lastResetDateKey)
+    }
 }
+
 
 // MARK: UserNotifications
 

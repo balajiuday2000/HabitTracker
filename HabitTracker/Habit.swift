@@ -13,6 +13,7 @@ nonisolated struct Habit: Identifiable, Codable, Hashable {
     let subtitle: String
     var isCompleted: Bool = false
     var reminderTime: Date? = nil
+    var streak: [Date] = []
 
     init(id: UUID = UUID(), title: String, subtitle: String, reminderTime: Date?) {
         self.id = id
