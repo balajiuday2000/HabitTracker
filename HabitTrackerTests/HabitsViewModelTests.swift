@@ -104,7 +104,6 @@ final class HabitsViewModelTests: XCTestCase {
         XCTAssertEqual(viewModel.habits[1].isCompleted, false)
     }
     
-    @MainActor
     func testOnOrderChanged() {
         // Given
         let habit1 = Habit(title: "Wake up early", subtitle: "Early bird gets the worm!", reminderTime: nil)

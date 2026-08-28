@@ -22,7 +22,7 @@ struct HabitsListView: View {
                 if !showCongrats {
                     // List View
                     List {
-                        ForEach(viewModel.habits, id: \.id) { habit in
+                        ForEach(viewModel.habits) { habit in
                             HabitCardView(habit: habit) {
                                 viewModel.onToggle(habit: habit)
                             } onDelete: {

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Habit: Identifiable, Codable, Hashable {
+nonisolated struct Habit: Identifiable, Codable, Hashable {
     let id: UUID
     let title: String
     let subtitle: String
