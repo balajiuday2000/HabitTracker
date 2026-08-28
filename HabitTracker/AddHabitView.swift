@@ -27,9 +27,11 @@ struct AddHabitView: View {
             Form {
                 Section("Set title") {
                     TextField("Enter title here", text: $title)
+                        .accessibilityIdentifier("habitTitleTextField")
                 }
                 Section("Set subtitle") {
                     TextField("Enter subtitle here", text: $subtitle)
+                        .accessibilityIdentifier("habitSubtitleTextField")
                 }
                 Toggle("Set a daily reminder?", isOn: $isReminderEnabled)
                 if isReminderEnabled {
@@ -60,6 +62,7 @@ struct AddHabitView: View {
                         dismiss()
                     }
                     .disabled(isSaveDisabled)
+                    .accessibilityIdentifier("saveHabbitButton")
                 }
             }
         }

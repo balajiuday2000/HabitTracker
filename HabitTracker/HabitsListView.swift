@@ -73,6 +73,7 @@ struct HabitsListView: View {
                     } label: {
                         Image(systemName: "plus")
                     }
+                    .accessibilityIdentifier("addHabitButton")
                 }
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Reset all") {
