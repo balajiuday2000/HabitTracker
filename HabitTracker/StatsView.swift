@@ -48,8 +48,6 @@ struct StatsView: View {
                     .frame(height: 250)
                     .padding()
                 }
-                
-                
             }
             .tabViewStyle(.page)
             .indexViewStyle(.page(backgroundDisplayMode: .always))
