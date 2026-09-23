@@ -11,7 +11,6 @@ import SwiftUI
 struct HabitCardView: View {
     var habit: Habit
     var onToggle: () -> Void
-    var onDelete: () -> Void
     
     @State private var hasAppeared = false
 

@@ -21,7 +21,7 @@ struct AddHabitView: View {
         title.trimmingCharacters(in: .whitespaces).isEmpty ||
         subtitle.trimmingCharacters(in: .whitespaces).isEmpty
     }
-    
+
     var body: some View {
         NavigationStack {
             Form {

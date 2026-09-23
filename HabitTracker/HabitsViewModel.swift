@@ -18,6 +18,10 @@ class HabitsViewModel {
     }
     var habits: [Habit] = []
     let userDefaults: UserDefaults
+    
+    var today: Date {
+        Calendar.current.startOfDay(for: Date())
+    }
 
     // Dependency injection
     init(userDefaults: UserDefaults = .standard) {
@@ -49,7 +53,6 @@ class HabitsViewModel {
     func onToggle(habit: Habit) {
         guard let index = habits.firstIndex(where: { $0.id == habit.id }) else { return }
         habits[index].isCompleted.toggle()
-        let today = Calendar.current.startOfDay(for: Date())
         // If completed, record streak if not already done.
         if habits[index].isCompleted {
             if !habits[index].streak.contains(today) {
@@ -57,7 +60,7 @@ class HabitsViewModel {
             }
         } else {
             // Else if unchecked, remove streak.
-            habits[index].streak.removeAll(where: { $0 == today} )
+            habits[index].streak.removeAll(where: { $0 == today })
         }
         saveHabits()
     }
@@ -71,6 +74,7 @@ class HabitsViewModel {
     func resetAll() {
         for index in habits.indices {
             habits[index].isCompleted = false
+            habits[index].streak.removeAll(where: { $0 == today })
         }
         saveHabits()
     }

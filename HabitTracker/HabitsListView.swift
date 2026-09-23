@@ -25,8 +25,6 @@ struct HabitsListView: View {
                         ForEach(viewModel.habits) { habit in
                             HabitCardView(habit: habit) {
                                 viewModel.onToggle(habit: habit)
-                            } onDelete: {
-                                viewModel.delete(habit: habit)
                             }
                             .listRowBackground(Color.clear)
                             .listRowSeparator(.hidden)
