@@ -61,7 +61,6 @@ struct HabitsListView: View {
                         }
                     }
                 }
-                
             }
             .navigationTitle("Habits")
             .toolbar {
