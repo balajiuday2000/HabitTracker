@@ -85,7 +85,6 @@ class HabitsViewModel {
     }
 
     func resetAllHabitsOnNewDay() {
-        let today = Calendar.current.startOfDay(for: Date())
         let lastResetDate = self.userDefaults.object(forKey: Constants.lastResetDateKey) as? Date
         
         // Only proceed if last reset day is nil (first launch)
