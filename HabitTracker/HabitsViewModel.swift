@@ -96,7 +96,6 @@ class HabitsViewModel {
     }
 }
 
-
 // MARK: UserNotifications
 
 extension HabitsViewModel {
