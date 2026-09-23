@@ -34,7 +34,6 @@ class HabitsViewModel {
         habits.append(habit)
         saveHabits()
         scheduleReminder(habit: habit)
-        
     }
 
     func loadHabits() {
