@@ -12,21 +12,13 @@ import Charts
 struct StatsView: View {
     var viewModel: HabitsViewModel
 
-    private var completedTasks: Int {
-        viewModel.habits.filter({ $0.isCompleted == true }).count
-    }
-
-    private var pendingTasks: Int {
-        viewModel.habits.filter({ $0.isCompleted == false }).count
-    }
-
     var body: some View {
         NavigationStack {
             TabView {
                 // First View
                 VStack(alignment: .center) {
                     Text("Today").font(.headline)
-                    ProgressRingView(progress: viewModel.habits.isEmpty ? 0 : Double(completedTasks) / Double(viewModel.habits.count))
+                    DailyProgressView(habits: viewModel.habits)
                         .padding(.vertical)
                 }
 

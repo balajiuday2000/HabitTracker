@@ -1,5 +1,5 @@
 //
-//  ProgressRingView.swift
+//  DailyProgressView.swift
 //  HabitTracker
 //
 //  Created by Balaji Udayakumar on 8/27/26.
@@ -8,8 +8,20 @@
 import Foundation
 import SwiftUI
 
-struct ProgressRingView: View {
-    var progress: Double
+struct DailyProgressView: View {
+    var habits: [Habit]
+
+    private var completedTasks: Int {
+        habits.filter({ $0.isCompleted == true }).count
+    }
+
+    private var pendingTasks: Int {
+        habits.filter({ $0.isCompleted == false }).count
+    }
+
+    var progress: Double {
+        habits.isEmpty ? 0 : Double(completedTasks) / Double(habits.count)
+    }
     
     var body: some View {
         ZStack {
