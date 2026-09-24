@@ -19,7 +19,7 @@ struct DailyProgressView: View {
         habits.filter({ $0.isCompleted == false }).count
     }
 
-    var progress: Double {
+    private var progress: Double {
         habits.isEmpty ? 0 : Double(completedTasks) / Double(habits.count)
     }
     
