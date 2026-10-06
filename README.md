@@ -17,14 +17,14 @@ HabitTracker/
 ├── Models/
 │   └── Habit.swift              
 ├── ViewModels/
-│   └── HabitsViewModel.swift
+│   ├── HabitsViewModel.swift
 │   └── AddHabitViewModel.swift     
 ├── Views/
 │   ├── RootView.swift       
 │   ├── HabitsListView.swift       
 │   ├── HabitCardView.swift       
 │   ├── AddHabitView.swift        
-│   └── StatsView.swift
-│   └── DailyProgressView.swift
-│   └── WeeklyProgressViewView.swift          
+│   ├── StatsView.swift
+│   ├── DailyProgressView.swift
+│   └── WeeklyProgressView.swift          
 ```
